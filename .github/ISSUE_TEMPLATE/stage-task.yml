@@ -1,0 +1,59 @@
+name: "Stage Task"
+description: "Work a single lifecycle stage for a system."
+title: "[Stage] <system> - <stage id>"
+labels: ["stage:task"]
+body:
+  - type: input
+    id: system_name
+    attributes:
+      label: System name
+    validations:
+      required: true
+  - type: input
+    id: stage_id
+    attributes:
+      label: Stage id
+      placeholder: intake | scaffold | contracts | core-logic | exports | tests | hardening | docs | release
+    validations:
+      required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What success looks like for this stage.
+    validations:
+      required: true
+  - type: textarea
+    id: required_files
+    attributes:
+      label: Required files
+      description: Paths that must be touched or read.
+      placeholder: "*.system.yaml, playbooks/<stage>.md"
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Non-goals
+      description: Explicitly out-of-scope items.
+  - type: textarea
+    id: checks
+    attributes:
+      label: Checks
+      description: Preconditions or validations to run.
+      placeholder: "python scripts/system_factory.py validate --file ..."
+  - type: textarea
+    id: definition_of_done
+    attributes:
+      label: Definition of done
+      description: Checklist for completion.
+    validations:
+      required: true
+  - type: input
+    id: next_stage_hint
+    attributes:
+      label: Next-stage hint
+      description: What the next stage should focus on after this merges.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes and handoff
+      description: Summarize what was attempted, blocked, or deferred.

@@ -1,0 +1,39 @@
+name: "Blocked Decision"
+description: "Capture a blocking decision with options."
+title: "[Blocked] <system> - <stage>"
+labels: ["blocked"]
+body:
+  - type: input
+    id: system_name
+    attributes:
+      label: System name
+    validations:
+      required: true
+  - type: input
+    id: stage_id
+    attributes:
+      label: Current stage
+    validations:
+      required: true
+  - type: textarea
+    id: blocker
+    attributes:
+      label: Blocker
+      description: What is blocked and why.
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: Options
+      description: Enumerate possible paths with pros/cons.
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed decision
+      description: The recommended option and rationale.
+  - type: textarea
+    id: needed
+    attributes:
+      label: What is needed
+      description: Information or approvals required to proceed.

@@ -1,0 +1,107 @@
+name: "Working Paper Review Engine"
+type: "review-engine"
+objective: "Automate review summaries for draft papers with clear accept/block signals."
+current_stage: scaffold
+status: in_progress
+inputs:
+  - name: paper_markdown
+    description: Draft content provided as markdown
+  - name: review_guidelines
+    description: Reviewer prompts and scoring rubrics
+outputs:
+  - name: review_packet
+    description: Structured summary with decisions, risks, and follow-up tasks
+dependencies:
+  - Access to source drafts
+  - Stable prompt guidelines
+acceptance_criteria:
+  - Summaries include evidence-backed decisions
+  - Risks and gaps are enumerated
+open_questions:
+  - How should conflicting reviewer feedback be resolved?
+stages:
+  - id: intake
+    name: Intake
+    description: Capture the scope, reviewers, and scoring rubric.
+    status: done
+    required_files:
+      - schema/system.schema.yaml
+    checks:
+      - System file validates
+    definition_of_done:
+      - Inputs and outputs listed
+      - Review rubric linked
+      - Risks logged
+    next_hint: Scaffold the repo structure and automation.
+  - id: scaffold
+    name: Scaffold
+    description: Set up automation and initial playbooks.
+    status: in_progress
+    required_files:
+      - README.md
+      - playbooks/bootstrap-system.md
+    checks:
+      - Docs outline stages
+      - Issue templates exist
+    definition_of_done:
+      - Validation workflow runs
+      - Stage tasks template ready
+    next_hint: Define contracts for inputs and outputs.
+  - id: contracts
+    name: Contracts
+    description: Define expected input format and review output schema.
+    status: planned
+    checks:
+      - Markdown parsing rules defined
+    definition_of_done:
+      - Input schema captured
+      - Output schema drafted
+    next_hint: Implement the review pipeline.
+  - id: core-logic
+    name: Core Logic
+    description: Implement review aggregation and scoring.
+    status: planned
+    definition_of_done:
+      - Review flow automated for happy path
+      - Scores computed consistently
+    next_hint: Add exports for downstream tools.
+  - id: exports
+    name: Exports
+    description: Deliver review packets to consumers.
+    status: planned
+    definition_of_done:
+      - Export format documented
+      - Example consumer verified
+    next_hint: Add regression tests.
+  - id: tests
+    name: Tests
+    description: Validate review parsing and scoring.
+    status: planned
+    definition_of_done:
+      - Contract tests for inputs and outputs
+      - Regression fixtures recorded
+    next_hint: Harden error handling.
+  - id: hardening
+    name: Hardening
+    description: Address edge cases and stability.
+    status: planned
+    definition_of_done:
+      - Failure handling covered
+      - Logging and retries configured
+    next_hint: Document operator guidance.
+  - id: docs
+    name: Docs
+    description: Document how to run and extend the engine.
+    status: planned
+    definition_of_done:
+      - README updated
+      - Ops notes captured
+    next_hint: Prepare release notes.
+  - id: release
+    name: Release
+    description: Final validation and rollout.
+    status: planned
+    definition_of_done:
+      - Completion issue opened
+      - Hand-off confirmed
+    next_hint: Completed.

@@ -1,0 +1,72 @@
+name: Seed system
+
+on:
+  workflow_dispatch:
+    inputs:
+      system_name:
+        description: "System name"
+        required: true
+      system_type:
+        description: "System type"
+        required: true
+      objective:
+        description: "Objective"
+        required: true
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Create system file
+        id: create
+        run: |
+          path=$(python scripts/system_factory.py create \
+            --name "${{ inputs.system_name }}" \
+            --type "${{ inputs.system_type }}" \
+            --objective "${{ inputs.objective }}" \
+            --output systems \
+            --print-path-only)
+          echo "system_path=$path" >> $GITHUB_OUTPUT
+      - name: Validate system file
+        run: python scripts/system_factory.py validate --file "${{ steps.create.outputs.system_path }}"
+      - name: Render intake issue
+        run: |
+          python scripts/system_factory.py render-issue \
+            --file "${{ steps.create.outputs.system_path }}" \
+            --stage intake \
+            --output intake_issue.md
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: "system/seed-${{ github.run_id }}"
+          commit-message: "chore: seed ${{ inputs.system_name }}"
+          title: "Seed system: ${{ inputs.system_name }}"
+          body: |
+            Seeded system file at `${{ steps.create.outputs.system_path }}`.
+            Objective: ${{ inputs.objective }}
+      - name: Open intake issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('intake_issue.md', 'utf8');
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `[${{ inputs.system_name }}] Intake stage`,
+              body
+            });

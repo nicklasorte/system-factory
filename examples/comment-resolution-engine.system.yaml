@@ -1,0 +1,96 @@
+name: "Comment Resolution Engine"
+type: "collaboration-tooling"
+objective: "Resolve GitHub review comments automatically with minimal human edits."
+current_stage: contracts
+status: in_progress
+inputs:
+  - name: pull_request_url
+    description: Target PR to resolve comments on
+  - name: reviewer_guidance
+    description: Rules for when to auto-resolve versus escalate
+outputs:
+  - name: resolution_report
+    description: Log of resolved comments and remaining blockers
+dependencies:
+  - GitHub API access
+  - Branch permissions for autofix pushes
+acceptance_criteria:
+  - Safe changes with reproducible logs
+  - Fallback to humans for ambiguous edits
+open_questions:
+  - How should conflicts be surfaced to reviewers?
+stages:
+  - id: intake
+    name: Intake
+    description: Identify supported repo patterns and guardrails.
+    status: done
+    definition_of_done:
+      - Risks documented
+      - Guardrails listed
+    next_hint: Scaffold automation hooks.
+  - id: scaffold
+    name: Scaffold
+    description: Create repo scaffolding and workflows.
+    status: done
+    definition_of_done:
+      - Workflows for validation exist
+      - Issue templates published
+    next_hint: Capture contracts for inputs and outputs.
+  - id: contracts
+    name: Contracts
+    description: Define when and how comments can be resolved automatically.
+    status: in_progress
+    checks:
+      - Resolution rules are explicit
+    definition_of_done:
+      - Input contract for PR data
+      - Output contract for resolution report
+    next_hint: Build the comment resolution loop.
+  - id: core-logic
+    name: Core Logic
+    description: Implement the main comment resolution loop.
+    status: planned
+    definition_of_done:
+      - Happy path resolves comments
+      - Logging is traceable
+    next_hint: Add export hooks.
+  - id: exports
+    name: Exports
+    description: Surface resolution reports to users.
+    status: planned
+    definition_of_done:
+      - Reports stored and shared
+      - Notifications configured
+    next_hint: Add automated tests.
+  - id: tests
+    name: Tests
+    description: Build regression tests for comment resolution.
+    status: planned
+    definition_of_done:
+      - Contract tests written
+      - Edge cases covered
+    next_hint: Harden for production signals.
+  - id: hardening
+    name: Hardening
+    description: Guard against failure modes and rate limits.
+    status: planned
+    definition_of_done:
+      - Backoff logic added
+      - Escalation paths defined
+    next_hint: Document operational behaviors.
+  - id: docs
+    name: Docs
+    description: Document usage, configuration, and limits.
+    status: planned
+    definition_of_done:
+      - Usage guide published
+      - Limits stated
+    next_hint: Prepare release checklist.
+  - id: release
+    name: Release
+    description: Finalize versioning and rollout notes.
+    status: planned
+    definition_of_done:
+      - Release issue opened
+      - Completion recorded
+    next_hint: Completed.

@@ -1,0 +1,126 @@
+name: "{{SYSTEM_NAME}}"
+type: "{{SYSTEM_TYPE}}"
+objective: "{{SYSTEM_OBJECTIVE}}"
+current_stage: intake
+status: in_progress
+inputs:
+  - name: seed_material
+    description: Notes, references, or existing documents that describe the desired system
+outputs:
+  - name: lifecycle_plan
+    description: System lifecycle state file and stage-by-stage plan
+dependencies:
+  - GitHub repository access for state and issues
+acceptance_criteria:
+  - System lifecycle is captured in a machine-readable file
+  - Each stage has a clear definition of done
+open_questions: []
+stages:
+  - id: intake
+    name: Intake
+    description: Capture the system concept, objective, constraints, and initial risks.
+    status: in_progress
+    required_files:
+      - schema/system.schema.yaml
+      - templates/system-template.yaml
+    checks:
+      - System file validates against schema
+      - Objective, inputs, outputs, and dependencies are explicit
+    definition_of_done:
+      - Objective captured and measurable
+      - Inputs and outputs listed
+      - Dependencies noted
+      - Next stage issue drafted
+    next_hint: Move into scaffold with a minimal repo layout and instructions for the first agent pass.
+  - id: scaffold
+    name: Scaffold
+    description: Prepare starter files, docs, and automation for the system.
+    status: planned
+    required_files:
+      - README.md
+      - SYSTEMS.md
+    checks:
+      - Repo contains lifecycle docs and playbooks
+      - Template system file exists
+    definition_of_done:
+      - Core docs land in repo
+      - GitHub actions wired
+      - Issue templates ready
+    next_hint: Add explicit contracts for inputs, outputs, and acceptance rules.
+  - id: contracts
+    name: Contracts
+    description: Nail down interfaces, data contracts, and acceptance criteria.
+    status: planned
+    checks:
+      - Inputs and outputs have concrete formats
+      - Edge cases captured as acceptance criteria
+    definition_of_done:
+      - Contracts documented
+      - Risks and assumptions recorded
+    next_hint: Implement core logic against the contracts.
+  - id: core-logic
+    name: Core Logic
+    description: Build the main execution path that satisfies the contracts.
+    status: planned
+    checks:
+      - Happy-path runs are automated
+      - Core logic is deterministic and replayable
+    definition_of_done:
+      - Core path implemented with basic validation
+      - Logs or artifacts are inspectable
+    next_hint: Wire exports for downstream consumption.
+  - id: exports
+    name: Exports
+    description: Expose outputs via files, APIs, or events for downstream use.
+    status: planned
+    checks:
+      - Outputs are shaped and versioned
+      - Consumers are identified
+    definition_of_done:
+      - Export path automated
+      - Example consumer verified
+    next_hint: Add automated tests for critical behaviors.
+  - id: tests
+    name: Tests
+    description: Add automated checks for correctness, schema, and regressions.
+    status: planned
+    checks:
+      - Tests cover happy and edge paths
+      - CI validates schemas and contracts
+    definition_of_done:
+      - Test suite covers contracts
+      - CI green for core scenarios
+    next_hint: Harden for production signals.
+  - id: hardening
+    name: Hardening
+    description: Address reliability, performance, and safety concerns.
+    status: planned
+    checks:
+      - Failure modes identified
+      - Monitoring or logging exists
+    definition_of_done:
+      - Known risks mitigated or accepted
+      - Error handling validated
+    next_hint: Finalize docs and operator handoffs.
+  - id: docs
+    name: Docs
+    description: Document usage, operations, and handoffs for humans and agents.
+    status: planned
+    checks:
+      - README and system docs updated
+      - Runbooks linked
+    definition_of_done:
+      - Docs reflect current system behavior
+      - Next steps for improvements captured
+    next_hint: Prepare the release checkpoint.
+  - id: release
+    name: Release
+    description: Final verification and release packaging.
+    status: planned
+    checks:
+      - Release notes drafted
+      - Final validation complete
+    definition_of_done:
+      - System marked complete
+      - Release issue created
+    next_hint: Celebrate and archive follow-ups.
