@@ -1,0 +1,51 @@
+name: "New System Intake"
+description: "Capture a new system idea and seed its lifecycle file."
+title: "[Intake] <system name>"
+labels: ["stage:intake"]
+body:
+  - type: input
+    id: system_name
+    attributes:
+      label: System name
+      placeholder: Example System
+    validations:
+      required: true
+  - type: input
+    id: system_type
+    attributes:
+      label: System type
+      placeholder: review-engine, orchestration, analytics
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: Single sentence describing the goal.
+    validations:
+      required: true
+  - type: textarea
+    id: inputs
+    attributes:
+      label: Inputs
+      description: Expected inputs for the system.
+  - type: textarea
+    id: outputs
+    attributes:
+      label: Outputs
+      description: Expected outputs or artifacts.
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Access, credentials, or upstream requirements.
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: What success looks like for intake.
+  - type: textarea
+    id: open_questions
+    attributes:
+      label: Open questions
+      description: Unknowns or risks to resolve later.

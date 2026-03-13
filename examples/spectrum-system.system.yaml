@@ -1,0 +1,95 @@
+name: "Spectrum Analysis System"
+type: "analytics"
+objective: "Analyze multi-source signals and surface actionable insights."
+current_stage: intake
+status: in_progress
+inputs:
+  - name: telemetry_stream
+    description: Event payloads from upstream services
+  - name: thresholds
+    description: Operator-provided limits for alerts
+outputs:
+  - name: alert_feed
+    description: Stream of normalized alerts with owners and playbooks
+dependencies:
+  - Access to telemetry pipeline
+  - Alert routing rules
+acceptance_criteria:
+  - Alerts are deduplicated and routed with owners
+  - False positives minimized with documented logic
+open_questions:
+  - Which destinations are first-class?
+  - How are alerts silenced?
+stages:
+  - id: intake
+    name: Intake
+    description: Capture data sources and alert requirements.
+    status: in_progress
+    definition_of_done:
+      - Inputs and outputs recorded
+      - Alert objectives written
+    next_hint: Scaffold code and workflows.
+  - id: scaffold
+    name: Scaffold
+    description: Set up project structure and automation.
+    status: planned
+    definition_of_done:
+      - Docs and workflows added
+      - Issue templates available
+    next_hint: Define contracts for data and alerts.
+  - id: contracts
+    name: Contracts
+    description: Describe payload formats and alert routing expectations.
+    status: planned
+    definition_of_done:
+      - Payload schema documented
+      - Routing rules captured
+    next_hint: Implement alert analysis logic.
+  - id: core-logic
+    name: Core Logic
+    description: Build alert analysis and deduplication.
+    status: planned
+    definition_of_done:
+      - Deduping logic implemented
+      - Alert severity computed
+    next_hint: Prepare export feeds.
+  - id: exports
+    name: Exports
+    description: Deliver alerts to downstream destinations.
+    status: planned
+    definition_of_done:
+      - Export destinations listed
+      - Example feed produced
+    next_hint: Add test coverage.
+  - id: tests
+    name: Tests
+    description: Add automated coverage for parsing and routing.
+    status: planned
+    definition_of_done:
+      - Contracts enforced by tests
+      - Routing rules covered
+    next_hint: Harden runtime behavior.
+  - id: hardening
+    name: Hardening
+    description: Improve robustness and mitigate false positives.
+    status: planned
+    definition_of_done:
+      - Backoff and retries defined
+      - Alert flood protection added
+    next_hint: Document final usage.
+  - id: docs
+    name: Docs
+    description: Document setup, tuning, and operations.
+    status: planned
+    definition_of_done:
+      - Usage guide published
+      - Ops notes captured
+    next_hint: Prepare release.
+  - id: release
+    name: Release
+    description: Final checks and release summary.
+    status: planned
+    definition_of_done:
+      - Release entry created
+      - Completion summary shared
+    next_hint: Completed.

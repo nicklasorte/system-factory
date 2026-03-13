@@ -1,0 +1,36 @@
+name: Validate system files
+
+on:
+  push:
+    paths:
+      - "**.system.yaml"
+      - "schema/**"
+      - "templates/**"
+      - "scripts/**"
+      - ".github/workflows/validate-system-files.yml"
+  pull_request:
+    paths:
+      - "**.system.yaml"
+      - "schema/**"
+      - "templates/**"
+      - "scripts/**"
+      - ".github/workflows/validate-system-files.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Validate system files
+        run: python scripts/system_factory.py validate --all

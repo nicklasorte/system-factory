@@ -1,0 +1,35 @@
+name: "Hardening Task"
+description: "Reliability, safety, or performance improvements."
+title: "[Hardening] <system> - <area>"
+labels: ["hardening"]
+body:
+  - type: input
+    id: system_name
+    attributes:
+      label: System name
+    validations:
+      required: true
+  - type: textarea
+    id: area
+    attributes:
+      label: Area
+      description: Reliability, safety, performance, or observability focus.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Link to prior issues/PRs or incidents.
+  - type: textarea
+    id: tasks
+    attributes:
+      label: Tasks
+      description: What needs to be changed.
+  - type: textarea
+    id: definition_of_done
+    attributes:
+      label: Definition of done
+      description: Clear completion criteria.
+    validations:
+      required: true

@@ -1,0 +1,90 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "System lifecycle definition"
+type: object
+required:
+  - name
+  - type
+  - objective
+  - current_stage
+  - status
+  - stages
+  - inputs
+  - outputs
+  - dependencies
+  - acceptance_criteria
+  - open_questions
+properties:
+  name:
+    type: string
+    description: Human readable system name
+  type:
+    type: string
+    description: Classification such as review-engine, summarizer, orchestrator
+  objective:
+    type: string
+    description: Single sentence objective for the system
+  current_stage:
+    type: string
+    enum: [intake, scaffold, contracts, core-logic, exports, tests, hardening, docs, release]
+  status:
+    type: string
+    enum: [planned, in_progress, blocked, complete]
+  stages:
+    type: array
+    description: Ordered stage definitions following the canonical lifecycle
+    items:
+      type: object
+      required: [id, name, description, status, definition_of_done]
+      properties:
+        id:
+          type: string
+          enum: [intake, scaffold, contracts, core-logic, exports, tests, hardening, docs, release]
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [planned, in_progress, blocked, done]
+        required_files:
+          type: array
+          items: { type: string }
+        non_goals:
+          type: array
+          items: { type: string }
+        checks:
+          type: array
+          items: { type: string }
+        definition_of_done:
+          type: array
+          items: { type: string }
+        outputs:
+          type: array
+          items: { type: string }
+        next_hint:
+          type: string
+  inputs:
+    type: array
+    items:
+      type: object
+      required: [name, description]
+      properties:
+        name: { type: string }
+        description: { type: string }
+  outputs:
+    type: array
+    items:
+      type: object
+      required: [name, description]
+      properties:
+        name: { type: string }
+        description: { type: string }
+  dependencies:
+    type: array
+    items: { type: string }
+  acceptance_criteria:
+    type: array
+    items: { type: string }
+  open_questions:
+    type: array
+    items: { type: string }
