@@ -1,0 +1,109 @@
+name: "Working Paper Review Engine"
+type: "review-engine"
+objective: "Automate draft paper reviews with crisp accept/block decisions and evidence."
+current_stage: core-engine
+status: in_progress
+inputs:
+  - name: paper_markdown
+    description: Draft content provided as markdown
+  - name: review_guidelines
+    description: Reviewer prompts and scoring rubrics
+outputs:
+  - name: review_packet
+    description: Structured summary with decisions, risks, and follow-up tasks
+  - name: risk_log
+    description: Known risks and mitigations for the draft
+dependencies:
+  - Access to source drafts
+  - Stable prompt guidelines
+acceptance_criteria:
+  - Summaries include evidence-backed decisions
+  - Risks and gaps are enumerated with owners
+open_questions:
+  - How should conflicting reviewer feedback be resolved?
+  - Which signals drive block versus accept?
+stages:
+  - id: intake
+    name: Intake
+    description: Capture the scope, reviewers, and scoring rubric.
+    status: done
+    required_files:
+      - schema/system.schema.yaml
+      - templates/system-template.yaml
+    checks:
+      - System file validates
+      - Inputs and outputs listed
+    definition_of_done:
+      - Review rubric linked
+      - Dependencies captured
+      - Acceptance criteria recorded
+    next_hint: Scaffold the repo structure and automation.
+  - id: scaffold
+    name: Scaffold
+    description: Set up automation, docs, and fixtures in this repo.
+    status: done
+    required_files:
+      - README.md
+      - SYSTEMS.md
+      - .github/workflows/validate-system-files.yml
+    checks:
+      - Docs outline lifecycle usage
+      - Validation workflow wired
+    definition_of_done:
+      - Local CLI steps documented
+      - Example system added under systems/
+      - Issue rendering flow proven once
+    next_hint: Define contracts for inputs and outputs.
+  - id: contracts
+    name: Contracts
+    description: Define expected input format and review output schema.
+    status: done
+    required_files:
+      - systems/working-paper-review-engine.system.yaml
+      - schema/system.schema.yaml
+    checks:
+      - Stage order follows the canonical lifecycle
+      - Each stage has clear definition_of_done
+    definition_of_done:
+      - Input schema captured
+      - Output schema drafted
+      - Stage statuses and current_stage align
+    next_hint: Implement the review pipeline and CLI.
+  - id: core-engine
+    name: Core Engine
+    description: Implement review aggregation, scoring, and lifecycle automation.
+    status: in_progress
+    required_files:
+      - scripts/system_factory.py
+      - scripts/lib/system_model.py
+      - scripts/lib/issue_renderer.py
+      - tests/test_system_model.py
+      - tests/test_issue_renderer.py
+      - examples/issues/working-paper-review-engine_core-engine.md
+    checks:
+      - Validation errors surface missing or duplicate stages clearly
+      - Issue rendering is deterministic for this system file
+      - Advancement blocked unless current stage is done
+    definition_of_done:
+      - CLI validate/render/advance succeed on this system file
+      - Deterministic issue fixture updated
+      - Next stage remains planned until this stage is done
+    next_hint: Add regression coverage and operator notes.
+  - id: review-hardening
+    name: Review Hardening
+    description: Harden reliability, evals, and regression coverage.
+    status: planned
+    definition_of_done:
+      - Regression fixtures captured for edge cases
+      - Error handling and logging validated
+      - Completion path documented
+    next_hint: Finalize release readiness.
+  - id: release
+    name: Release
+    description: Final validation and rollout.
+    status: planned
+    definition_of_done:
+      - Completion issue opened
+      - Hand-off confirmed
+      - System status marked complete
+    next_hint: Completed.

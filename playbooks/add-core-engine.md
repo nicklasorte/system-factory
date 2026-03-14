@@ -1,9 +1,9 @@
-# Playbook: Add Core Logic
+# Playbook: Add Core Engine
 
 Goal: implement the main execution path that satisfies the contracts.
 
 ## Steps
-- Confirm `current_stage` is `core-logic`; review contracts and acceptance criteria.
+- Confirm `current_stage` is `core-engine`; review contracts and acceptance criteria.
 - Implement the happy path with deterministic outputs.
 - Add minimal logging or artifacts for reproducibility.
 - Keep changes scoped to the core flow; defer optimizations.

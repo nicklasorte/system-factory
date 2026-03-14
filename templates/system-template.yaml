@@ -34,7 +34,7 @@ stages:
     next_hint: Move into scaffold with a minimal repo layout and instructions for the first agent pass.
   - id: scaffold
     name: Scaffold
-    description: Prepare starter files, docs, and automation for the system.
+    description: Prepare starter files, docs, and automation for the system in this repository.
     status: planned
     required_files:
       - README.md
@@ -43,10 +43,10 @@ stages:
       - Repo contains lifecycle docs and playbooks
       - Template system file exists
     definition_of_done:
-      - Core docs land in repo
-      - GitHub actions wired
-      - Issue templates ready
-    next_hint: Add explicit contracts for inputs, outputs, and acceptance rules.
+      - Core docs land in repo with install and run steps
+      - GitHub actions wired for validation
+      - Issue template or fixture ready for next stage
+    next_hint: Add explicit contracts for inputs, outputs, and acceptance rules in this repo.
   - id: contracts
     name: Contracts
     description: Nail down interfaces, data contracts, and acceptance criteria.
@@ -57,62 +57,29 @@ stages:
     definition_of_done:
       - Contracts documented
       - Risks and assumptions recorded
-    next_hint: Implement core logic against the contracts.
-  - id: core-logic
-    name: Core Logic
-    description: Build the main execution path that satisfies the contracts.
+    next_hint: Implement the core engine against these contracts.
+  - id: core-engine
+    name: Core Engine
+    description: Build the main execution path that satisfies the contracts end to end.
     status: planned
     checks:
-      - Happy-path runs are automated
-      - Core logic is deterministic and replayable
+      - Happy-path runs are automated and deterministic
+      - Logs are inspectable for debugging
     definition_of_done:
       - Core path implemented with basic validation
-      - Logs or artifacts are inspectable
-    next_hint: Wire exports for downstream consumption.
-  - id: exports
-    name: Exports
-    description: Expose outputs via files, APIs, or events for downstream use.
+      - End-to-end flow produces expected outputs
+    next_hint: Harden review coverage and regression checks.
+  - id: review-hardening
+    name: Review Hardening
+    description: Add regression coverage, evals, and operational guardrails.
     status: planned
     checks:
-      - Outputs are shaped and versioned
-      - Consumers are identified
+      - Failure modes identified and captured as tests
+      - Evaluation or fixtures recorded
     definition_of_done:
-      - Export path automated
-      - Example consumer verified
-    next_hint: Add automated tests for critical behaviors.
-  - id: tests
-    name: Tests
-    description: Add automated checks for correctness, schema, and regressions.
-    status: planned
-    checks:
-      - Tests cover happy and edge paths
-      - CI validates schemas and contracts
-    definition_of_done:
-      - Test suite covers contracts
-      - CI green for core scenarios
-    next_hint: Harden for production signals.
-  - id: hardening
-    name: Hardening
-    description: Address reliability, performance, and safety concerns.
-    status: planned
-    checks:
-      - Failure modes identified
-      - Monitoring or logging exists
-    definition_of_done:
-      - Known risks mitigated or accepted
-      - Error handling validated
-    next_hint: Finalize docs and operator handoffs.
-  - id: docs
-    name: Docs
-    description: Document usage, operations, and handoffs for humans and agents.
-    status: planned
-    checks:
-      - README and system docs updated
-      - Runbooks linked
-    definition_of_done:
-      - Docs reflect current system behavior
-      - Next steps for improvements captured
-    next_hint: Prepare the release checkpoint.
+      - Regression or eval coverage in place
+      - Observability and error handling validated
+    next_hint: Finalize docs and release notes.
   - id: release
     name: Release
     description: Final verification and release packaging.

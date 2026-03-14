@@ -35,7 +35,7 @@ stages:
     next_hint: Scaffold the repo structure and automation.
   - id: scaffold
     name: Scaffold
-    description: Set up automation and initial playbooks.
+    description: Set up automation and initial playbooks inside this repo.
     status: in_progress
     required_files:
       - README.md
@@ -57,46 +57,22 @@ stages:
       - Input schema captured
       - Output schema drafted
     next_hint: Implement the review pipeline.
-  - id: core-logic
-    name: Core Logic
+  - id: core-engine
+    name: Core Engine
     description: Implement review aggregation and scoring.
     status: planned
     definition_of_done:
       - Review flow automated for happy path
       - Scores computed consistently
-    next_hint: Add exports for downstream tools.
-  - id: exports
-    name: Exports
-    description: Deliver review packets to consumers.
-    status: planned
-    definition_of_done:
-      - Export format documented
-      - Example consumer verified
-    next_hint: Add regression tests.
-  - id: tests
-    name: Tests
-    description: Validate review parsing and scoring.
+    next_hint: Add regression coverage.
+  - id: review-hardening
+    name: Review Hardening
+    description: Harden reliability, evals, and regression coverage.
     status: planned
     definition_of_done:
       - Contract tests for inputs and outputs
       - Regression fixtures recorded
-    next_hint: Harden error handling.
-  - id: hardening
-    name: Hardening
-    description: Address edge cases and stability.
-    status: planned
-    definition_of_done:
-      - Failure handling covered
-      - Logging and retries configured
-    next_hint: Document operator guidance.
-  - id: docs
-    name: Docs
-    description: Document how to run and extend the engine.
-    status: planned
-    definition_of_done:
-      - README updated
-      - Ops notes captured
-    next_hint: Prepare release notes.
+    next_hint: Finalize release readiness.
   - id: release
     name: Release
     description: Final validation and rollout.

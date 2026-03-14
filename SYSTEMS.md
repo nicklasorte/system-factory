@@ -15,12 +15,9 @@ See `schema/system.schema.yaml` for a machine-readable definition and `templates
 1. intake
 2. scaffold
 3. contracts
-4. core-logic
-5. exports
-6. tests
-7. hardening
-8. docs
-9. release
+4. core-engine
+5. review-hardening
+6. release
 
 `current_stage` must appear in the stage list. A stage is “complete” when its `status` is `done` and its `definition_of_done` items are satisfied in the PR that closed it. CI advances to the next stage once a merged PR marks the current stage `done`.
 
