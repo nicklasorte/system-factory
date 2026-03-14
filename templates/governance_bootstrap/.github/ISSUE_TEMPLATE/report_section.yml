@@ -1,0 +1,27 @@
+name: Report Section
+description: Draft a report section with governed sources and provenance.
+title: "[Report] <section>"
+labels: ["ssos", "report", "governance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        {{SSOS_DECLARATION}}
+        Governing repo: {{GOVERNING_REPO}} | System layer: {{SYSTEM_LAYER}}
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What is the report section about? Which governed artifacts does it reference?
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Provenance
+      description: Cite sources, datasets, or contracts; record standards version and drift considerations.
+  - type: textarea
+    id: review
+    attributes:
+      label: Review and approvals
+      description: Who must review? Include any upstream reviewers from {{GOVERNING_REPO}}.

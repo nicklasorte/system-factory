@@ -1,0 +1,27 @@
+name: Comment Matrix
+description: Track review comments and governance responses.
+title: "[Comment Matrix] <scope>"
+labels: ["ssos", "review", "governance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This repo is part of the SSOS / czar org and governed by nicklasorte/spectrum-systems.
+        Governing repo: nicklasorte/spectrum-systems | System layer: Engine
+  - type: textarea
+    id: source
+    attributes:
+      label: Source thread
+      description: Link to the discussion or PR this matrix tracks.
+    validations:
+      required: true
+  - type: textarea
+    id: mapping
+    attributes:
+      label: Comment to action mapping
+      description: List each comment, decision, and whether it needs upstream action in nicklasorte/spectrum-systems.
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification
+      description: How will you verify governance alignment after applying changes?

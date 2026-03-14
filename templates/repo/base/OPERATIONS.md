@@ -2,11 +2,14 @@
 
 Operating mode: {{REPO_ROLE}} ({{CONTRACT_MODE}})  
 Standards dependency: {{STANDARDS_REPO}} @ {{STANDARDS_VERSION}}
+System layer: {{SYSTEM_LAYER}}  
+Governing repo: {{GOVERNING_REPO}}
 
 Operational checklist:
 - Review `config/contracts.yaml` before work to confirm consumed/produced artifact types and standards reference.
 - Capture provenance in `config/provenance.yaml` for every run (source inputs, run_id, standards version, outputs, timestamps).
 - Use `validation/contract_validation.py` to load canonical contracts from `{{STANDARDS_REPO}}` and block mismatches early.
+- Keep SSOS governance bootstrap assets (`.github/ISSUE_TEMPLATE`, `.github/workflows/ssos-project-automation.yml`, `scripts/setup-labels.sh`) enabled unless a compensating control is documented.
 - Keep local fixtures bounded; replace them with references to canonical contracts as soon as possible.
 - Update `standards_source_version` when upstream changes land, and re-run validation before releasing.
 

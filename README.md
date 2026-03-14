@@ -52,6 +52,13 @@ python scripts/system_factory.py scaffold-repo --name "Working Paper Review Engi
 ```
 This produces `scaffolds/working-paper-review-engine` with contract declarations, provenance placeholders, validation stubs, and czar-aware docs that point at `spectrum-systems`.
 
+## SSOS governance bootstrap
+- Repo scaffolds can include SSOS control-plane assets by default: issue templates, project automation, label bootstrap, and governance-linkage docs (README/AGENTS/CLAUDE/CODEX).
+- New options: `--include-governance-bootstrap | --skip-governance-bootstrap`, `--include-project-automation`, `--include-issue-templates`, `--include-label-script`, `--governing-repo` (default `nicklasorte/spectrum-systems`), `--github-project-number`, `--system-layer`, and `--preset`.
+- Presets live in `templates/repo-presets.yaml` (`engine`, `orchestrator`, `advisor`, `governance`, `knowledge`) and set sensible defaults for the flags above.
+- See `GOVERNANCE_BOOTSTRAP.md` for defaults, disable/override guidance, and which files remain canonical in `nicklasorte/spectrum-systems`.
+- Example output with governance bootstrap enabled: `examples/repo/working-paper-review-engine` (includes .github automation, labels script, metadata docs).
+
 ## Constitution-linked engines
 Use `templates/constitution-linked-engine/` when creating an operational engine repository. It includes the constitution pin (`config/constitution.yaml`), integration guidance, compatibility policy, versioning/drift policy, and a `src/` stub for adapters that enforce the `spectrum-systems` contracts.
 

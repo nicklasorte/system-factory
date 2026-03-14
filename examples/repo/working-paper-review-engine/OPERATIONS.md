@@ -1,12 +1,15 @@
 # Operations
 
 Operating mode: engine_repo (consume_and_produce)  
-Standards dependency: spectrum-systems @ main
+Standards dependency: nicklasorte/spectrum-systems @ main
+System layer: Engine  
+Governing repo: nicklasorte/spectrum-systems
 
 Operational checklist:
 - Review `config/contracts.yaml` before work to confirm consumed/produced artifact types and standards reference.
 - Capture provenance in `config/provenance.yaml` for every run (source inputs, run_id, standards version, outputs, timestamps).
-- Use `validation/contract_validation.py` to load canonical contracts from `spectrum-systems` and block mismatches early.
+- Use `validation/contract_validation.py` to load canonical contracts from `nicklasorte/spectrum-systems` and block mismatches early.
+- Keep SSOS governance bootstrap assets (`.github/ISSUE_TEMPLATE`, `.github/workflows/ssos-project-automation.yml`, `scripts/setup-labels.sh`) enabled unless a compensating control is documented.
 - Keep local fixtures bounded; replace them with references to canonical contracts as soon as possible.
 - Update `standards_source_version` when upstream changes land, and re-run validation before releasing.
 

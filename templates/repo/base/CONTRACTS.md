@@ -1,6 +1,6 @@
 # Contracts
 
-This repository follows the canonical artifact contracts defined in `{{STANDARDS_REPO}}`. It must not redefine or fork those contracts locally. Instead, it declares how it consumes and/or produces artifacts under those contracts.
+This repository follows the canonical artifact contracts defined in `{{STANDARDS_REPO}}` (governed by `{{GOVERNING_REPO}}`). It must not redefine or fork those contracts locally. Instead, it declares how it consumes and/or produces artifacts under those contracts and escalates changes upstream first.
 
 What this repo does:
 - Adopts canonical contracts from `{{STANDARDS_REPO}}` (see `config/contracts.yaml`).

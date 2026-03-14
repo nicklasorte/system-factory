@@ -1,0 +1,33 @@
+name: System Feature
+description: Propose a system feature while keeping SSOS alignment intact.
+title: "[Feature] <short title>"
+labels: ["ssos", "feature", "governance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        {{SSOS_DECLARATION}}
+        Governing repo: {{GOVERNING_REPO}} | System layer: {{SYSTEM_LAYER}}
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Outline the feature and the governed artifacts it touches.
+      placeholder: Coordinate with canonical contracts before implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance and guardrails
+      description: List acceptance criteria and governance/contract guardrails.
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and drift
+      description: What could drift from {{GOVERNING_REPO}}? How will you detect and prevent it?
+  - type: textarea
+    id: links
+    attributes:
+      label: Upstream references
+      description: Link to related issues or standards discussions in {{GOVERNING_REPO}}.

@@ -1,0 +1,33 @@
+name: Artifact Change
+description: Capture a governed artifact update aligned with SSOS standards.
+title: "[Artifact] <artifact>"
+labels: ["ssos", "artifact", "governance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        {{SSOS_DECLARATION}}
+        Governing repo: {{GOVERNING_REPO}} | System layer: {{SYSTEM_LAYER}}
+  - type: input
+    id: artifact
+    attributes:
+      label: Artifact
+      description: Which governed artifact is being introduced or modified?
+      placeholder: e.g., review_packet
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context and scope
+      description: Why is this change needed? Reference canonical contracts from {{GOVERNING_REPO}}.
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility and drift
+      description: Describe compatibility with the current standards version and any drift mitigation.
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation plan
+      description: How will you validate this artifact against canonical contracts?

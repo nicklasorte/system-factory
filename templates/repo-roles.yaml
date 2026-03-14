@@ -7,7 +7,7 @@ roles:
     consumed_artifact_types: []
     produced_artifact_types: [canonical_contracts]
     supported_contract_versions: ["v1"]
-    standards_dependency: spectrum-systems
+    standards_dependency: nicklasorte/spectrum-systems
     standards_source_version: main
     standards_enforcement: required
   engine_repo:
@@ -18,7 +18,7 @@ roles:
     consumed_artifact_types: [working_paper_markdown, review_guidelines]
     produced_artifact_types: [review_packet, risk_log]
     supported_contract_versions: ["v1"]
-    standards_dependency: spectrum-systems
+    standards_dependency: nicklasorte/spectrum-systems
     standards_source_version: main
     standards_enforcement: required
   orchestration_repo:
@@ -29,7 +29,7 @@ roles:
     consumed_artifact_types: [workflow_plan, engine_contracts]
     produced_artifact_types: [orchestration_log, dispatch_plan]
     supported_contract_versions: ["v1"]
-    standards_dependency: spectrum-systems
+    standards_dependency: nicklasorte/spectrum-systems
     standards_source_version: main
     standards_enforcement: required
   library_repo:
@@ -40,7 +40,7 @@ roles:
     consumed_artifact_types: [canonical_contracts]
     produced_artifact_types: [library_package]
     supported_contract_versions: ["v1"]
-    standards_dependency: spectrum-systems
+    standards_dependency: nicklasorte/spectrum-systems
     standards_source_version: main
     standards_enforcement: required
   analysis_repo:
@@ -51,6 +51,6 @@ roles:
     consumed_artifact_types: [analysis_dataset]
     produced_artifact_types: [findings_report, audit_log]
     supported_contract_versions: ["v1"]
-    standards_dependency: spectrum-systems
+    standards_dependency: nicklasorte/spectrum-systems
     standards_source_version: main
     standards_enforcement: required

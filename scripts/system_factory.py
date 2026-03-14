@@ -175,6 +175,14 @@ def cmd_scaffold_repo(args: argparse.Namespace) -> int:
             contract_mode=args.contract_mode,
             primary_artifact_types=args.primary_artifact_types,
             standards_version=args.standards_version,
+            include_governance_bootstrap=args.include_governance_bootstrap,
+            include_project_automation=args.include_project_automation,
+            include_issue_templates=args.include_issue_templates,
+            include_label_script=args.include_label_script,
+            governing_repo=args.governing_repo,
+            github_project_number=args.github_project_number,
+            system_layer=args.system_layer,
+            preset=args.preset,
         )
     except RepoScaffoldError as exc:
         print(exc, file=sys.stderr)
@@ -260,6 +268,76 @@ def build_parser() -> argparse.ArgumentParser:
     scaffold.add_argument(
         "--standards-version",
         help="Optional standards reference/version override.",
+    )
+    scaffold.add_argument(
+        "--include-governance-bootstrap",
+        dest="include_governance_bootstrap",
+        action="store_true",
+        help="Include SSOS governance bootstrap assets (issue templates, workflows, labels, docs).",
+    )
+    scaffold.add_argument(
+        "--skip-governance-bootstrap",
+        dest="include_governance_bootstrap",
+        action="store_false",
+        help="Disable governance bootstrap assets.",
+    )
+    scaffold.add_argument(
+        "--include-project-automation",
+        dest="include_project_automation",
+        action="store_true",
+        help="Include SSOS project automation workflow.",
+    )
+    scaffold.add_argument(
+        "--skip-project-automation",
+        dest="include_project_automation",
+        action="store_false",
+        help="Skip SSOS project automation workflow.",
+    )
+    scaffold.add_argument(
+        "--include-issue-templates",
+        dest="include_issue_templates",
+        action="store_true",
+        help="Include SSOS issue templates.",
+    )
+    scaffold.add_argument(
+        "--skip-issue-templates",
+        dest="include_issue_templates",
+        action="store_false",
+        help="Skip SSOS issue templates.",
+    )
+    scaffold.add_argument(
+        "--include-label-script",
+        dest="include_label_script",
+        action="store_true",
+        help="Include SSOS label bootstrap script.",
+    )
+    scaffold.add_argument(
+        "--skip-label-script",
+        dest="include_label_script",
+        action="store_false",
+        help="Skip SSOS label bootstrap script.",
+    )
+    scaffold.add_argument(
+        "--governing-repo",
+        help="Governing repository for canonical standards (default: nicklasorte/spectrum-systems).",
+    )
+    scaffold.add_argument(
+        "--github-project-number",
+        help="Optional GitHub project number used by automation workflow.",
+    )
+    scaffold.add_argument(
+        "--system-layer",
+        help="System layer classification (Factory, Governance, Orchestrator, Engine, Knowledge, Advisor).",
+    )
+    scaffold.add_argument(
+        "--preset",
+        help="Repo classification preset (engine, orchestrator, advisor, governance, knowledge).",
+    )
+    scaffold.set_defaults(
+        include_governance_bootstrap=None,
+        include_project_automation=None,
+        include_issue_templates=None,
+        include_label_script=None,
     )
     scaffold.set_defaults(func=cmd_scaffold_repo)
 
