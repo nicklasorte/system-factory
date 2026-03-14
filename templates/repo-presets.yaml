@@ -1,0 +1,81 @@
+presets:
+  engine:
+    role: engine_repo
+    description: Engine repositories that run SSOS-aligned pipelines and emit governed artifacts.
+    system_layer: Engine
+    governing_repo: nicklasorte/spectrum-systems
+    include_governance_bootstrap: true
+    include_project_automation: true
+    include_issue_templates: true
+    include_label_script: true
+    github_project_number:
+    recommended_labels: [ssos, engine, governance-aligned, contract-checked]
+    recommended_docs: [governance_linkage, contracts, operations, provenance]
+    automation_hooks: [project_sync, label_bootstrap, governance_checks]
+    metadata_notes:
+      - "Primary artifacts should declare consumed and produced contracts."
+      - "Keep compatibility notes synced with spectrum-systems releases."
+  orchestrator:
+    role: orchestration_repo
+    description: Orchestration repos coordinating engines while enforcing SSOS contracts.
+    system_layer: Orchestrator
+    governing_repo: nicklasorte/spectrum-systems
+    include_governance_bootstrap: true
+    include_project_automation: true
+    include_issue_templates: true
+    include_label_script: true
+    github_project_number:
+    recommended_labels: [ssos, orchestrator, integration, governance-aligned]
+    recommended_docs: [governance_linkage, integration, operations, contracts]
+    automation_hooks: [project_sync, label_bootstrap, workflow_alignment]
+    metadata_notes:
+      - "Document upstream/downstream engine dependencies."
+      - "Record orchestration compatibility with standards versions."
+  advisor:
+    role: analysis_repo
+    description: Advisor or analysis repos that consume contracts and produce governed findings.
+    system_layer: Advisor
+    governing_repo: nicklasorte/spectrum-systems
+    include_governance_bootstrap: true
+    include_project_automation: true
+    include_issue_templates: true
+    include_label_script: true
+    github_project_number:
+    recommended_labels: [ssos, advisor, governance-aligned, findings]
+    recommended_docs: [governance_linkage, findings_policy, operations]
+    automation_hooks: [project_sync, label_bootstrap]
+    metadata_notes:
+      - "Call out source datasets and provenance in metadata."
+      - "Escalate contract drift to spectrum-systems before adopting."
+  governance:
+    role: standards_repo
+    description: Standards-owning repos that define canonical artifacts for SSOS.
+    system_layer: Governance
+    governing_repo: nicklasorte/spectrum-systems
+    include_governance_bootstrap: true
+    include_project_automation: true
+    include_issue_templates: true
+    include_label_script: false
+    github_project_number:
+    recommended_labels: [ssos, governance, canonical]
+    recommended_docs: [governance_linkage, contract_catalog, release_policy]
+    automation_hooks: [project_sync]
+    metadata_notes:
+      - "Track schema and contract releases with compatibility notes."
+      - "Upstream changes must be versioned and announced."
+  knowledge:
+    role: library_repo
+    description: Knowledge and library repos that package reusable SSOS components.
+    system_layer: Knowledge
+    governing_repo: nicklasorte/spectrum-systems
+    include_governance_bootstrap: true
+    include_project_automation: true
+    include_issue_templates: true
+    include_label_script: true
+    github_project_number:
+    recommended_labels: [ssos, knowledge, reusable, governance-aligned]
+    recommended_docs: [governance_linkage, release_notes, operations]
+    automation_hooks: [project_sync, label_bootstrap]
+    metadata_notes:
+      - "Document compatibility with canonical contracts for each release."
+      - "Record provenance for packaged artifacts."

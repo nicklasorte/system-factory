@@ -1,8 +1,9 @@
 # Architecture
 
-This {{REPO_ROLE}} is anchored to the canonical standards published in `{{STANDARDS_REPO}}`. It inherits artifact contracts rather than redefining them. The architecture assumes:
+This {{REPO_ROLE}} is anchored to the canonical standards published in `{{STANDARDS_REPO}}` and governed by `{{GOVERNING_REPO}}`. It inherits artifact contracts rather than redefining them. The architecture assumes:
 
 - Contract mode: {{CONTRACT_MODE}} – this repo will {{CONTRACT_MODE}} artifacts defined upstream.
+- System layer: {{SYSTEM_LAYER}}
 - Primary artifact types: {{PRIMARY_ARTIFACT_TYPES}}
 - Supported contract versions: {{SUPPORTED_CONTRACT_VERSIONS}}
 

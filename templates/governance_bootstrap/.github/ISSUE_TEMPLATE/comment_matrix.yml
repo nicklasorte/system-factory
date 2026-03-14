@@ -1,0 +1,27 @@
+name: Comment Matrix
+description: Track review comments and governance responses.
+title: "[Comment Matrix] <scope>"
+labels: ["ssos", "review", "governance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        {{SSOS_DECLARATION}}
+        Governing repo: {{GOVERNING_REPO}} | System layer: {{SYSTEM_LAYER}}
+  - type: textarea
+    id: source
+    attributes:
+      label: Source thread
+      description: Link to the discussion or PR this matrix tracks.
+    validations:
+      required: true
+  - type: textarea
+    id: mapping
+    attributes:
+      label: Comment to action mapping
+      description: List each comment, decision, and whether it needs upstream action in {{GOVERNING_REPO}}.
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification
+      description: How will you verify governance alignment after applying changes?
