@@ -28,14 +28,14 @@ System Factory keeps repo-based AI systems as deterministic YAML lifecycles. Eac
 - `examples/` – additional sample systems plus rendered issue fixtures.
 - `schema/` – lifecycle schema and stage order.
 - `templates/` – starter system template with the canonical stages.
-- `templates/constitution-linked-engine/` – scaffold for operational engines pre-wired to the `spectrum-systems` constitution.
+- `templates/constitution-linked-engine/` – scaffold for operational engines pre-wired to the `spectrum-systems` constitution with compatibility and versioning policies.
 - `scripts/` – CLI (`system_factory.py`) and helpers.
 - `tests/` – unit tests for validation, advancement, and rendering.
 - `playbooks/` – stage-specific guidance (`bootstrap-system`, `add-contracts`, `add-core-engine`, `review-hardening`, `release-system`).
 - `.github/workflows/` – validation and advance-on-merge automation.
 
 ## Constitution-linked engines
-Use `templates/constitution-linked-engine/` when creating an operational engine repository. It includes the constitution pin (`config/constitution.yaml`), integration guidance, compatibility policy, and a `src/` stub for adapters that enforce the `spectrum-systems` contracts.
+Use `templates/constitution-linked-engine/` when creating an operational engine repository. It includes the constitution pin (`config/constitution.yaml`), integration guidance, compatibility policy, versioning/drift policy, and a `src/` stub for adapters that enforce the `spectrum-systems` contracts.
 
 ## Workflows
 - `validate-system-files` runs on pushes and PRs touching lifecycle files or tooling.

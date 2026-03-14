@@ -15,3 +15,7 @@ This template assumes every operational engine inherits its governance from the 
 ## Verification
 - Keep CI coverage that validates references and schema parity with `spectrum-systems`.
 - Update `sync.last_synced_ref` after each verified sync so the next maintainer knows the provenance of the wiring.
+
+## Related policies
+- `docs/compatibility-policy.md` defines the conditions for accepting or blocking constitution bumps.
+- `docs/versioning-and-drift-policy.md` explains how to pin references, detect drift, and react to governance changes.
