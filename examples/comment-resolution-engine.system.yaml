@@ -46,45 +46,21 @@ stages:
       - Input contract for PR data
       - Output contract for resolution report
     next_hint: Build the comment resolution loop.
-  - id: core-logic
-    name: Core Logic
+  - id: core-engine
+    name: Core Engine
     description: Implement the main comment resolution loop.
     status: planned
     definition_of_done:
       - Happy path resolves comments
       - Logging is traceable
-    next_hint: Add export hooks.
-  - id: exports
-    name: Exports
-    description: Surface resolution reports to users.
-    status: planned
-    definition_of_done:
-      - Reports stored and shared
-      - Notifications configured
-    next_hint: Add automated tests.
-  - id: tests
-    name: Tests
-    description: Build regression tests for comment resolution.
+    next_hint: Add regression coverage.
+  - id: review-hardening
+    name: Review Hardening
+    description: Harden against rate limits and regression failures.
     status: planned
     definition_of_done:
       - Contract tests written
       - Edge cases covered
-    next_hint: Harden for production signals.
-  - id: hardening
-    name: Hardening
-    description: Guard against failure modes and rate limits.
-    status: planned
-    definition_of_done:
-      - Backoff logic added
-      - Escalation paths defined
-    next_hint: Document operational behaviors.
-  - id: docs
-    name: Docs
-    description: Document usage, configuration, and limits.
-    status: planned
-    definition_of_done:
-      - Usage guide published
-      - Limits stated
     next_hint: Prepare release checklist.
   - id: release
     name: Release

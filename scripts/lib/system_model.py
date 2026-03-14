@@ -10,11 +10,8 @@ STANDARD_STAGE_ORDER: List[str] = [
     "intake",
     "scaffold",
     "contracts",
-    "core-logic",
-    "exports",
-    "tests",
-    "hardening",
-    "docs",
+    "core-engine",
+    "review-hardening",
     "release",
 ]
 
@@ -72,6 +69,26 @@ def _validate_stage(stage: Dict, index: int) -> List[str]:
     return errors
 
 
+def _validate_stage_sequence(stage_ids: List[str]) -> List[str]:
+    errors: List[str] = []
+    known_ids = [sid for sid in stage_ids if sid]
+    duplicates = sorted({sid for sid in known_ids if known_ids.count(sid) > 1})
+    if duplicates:
+        errors.append(f"duplicate stage ids: {', '.join(duplicates)}")
+    missing = [sid for sid in STANDARD_STAGE_ORDER if sid not in known_ids]
+    if missing:
+        errors.append(f"missing stage ids: {', '.join(missing)}")
+    extras = [sid for sid in known_ids if sid not in STANDARD_STAGE_ORDER]
+    if extras:
+        errors.append(f"unknown stage ids: {', '.join(extras)}")
+    if not duplicates and not missing and not extras and known_ids != STANDARD_STAGE_ORDER:
+        errors.append(
+            "stages must follow the standard order "
+            f"{' -> '.join(STANDARD_STAGE_ORDER)}"
+        )
+    return errors
+
+
 def validate_system(system: Dict) -> List[str]:
     errors: List[str] = []
     required_fields = [
@@ -103,11 +120,7 @@ def validate_system(system: Dict) -> List[str]:
                 continue
             errors.extend(_validate_stage(stage, index))
         stage_ids = [stage.get("id") for stage in stages if isinstance(stage, dict)]
-        if stage_ids != STANDARD_STAGE_ORDER:
-            errors.append(
-                "stages must follow the standard order "
-                f"{' -> '.join(STANDARD_STAGE_ORDER)}"
-            )
+        errors.extend(_validate_stage_sequence(stage_ids))
         current_stage = system.get("current_stage")
         if current_stage and current_stage not in stage_ids:
             errors.append(

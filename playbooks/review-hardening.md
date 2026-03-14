@@ -1,9 +1,9 @@
-# Playbook: Add Hardening
+# Playbook: Review Hardening
 
 Goal: improve reliability, safety, and performance.
 
 ## Steps
-- Confirm `current_stage` is `hardening` and review test coverage.
+- Confirm `current_stage` is `review-hardening` and review test coverage.
 - Identify failure modes, timeouts, and rate limits.
 - Add guards, retries, and telemetry where appropriate.
 - Update documentation with operational expectations.

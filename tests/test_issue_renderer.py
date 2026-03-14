@@ -2,6 +2,7 @@ import unittest
 from pathlib import Path
 
 from scripts.lib.issue_renderer import render_completion_issue, render_stage_issue
+from scripts.lib.system_model import load_system_file
 
 
 class IssueRendererTests(unittest.TestCase):
@@ -43,39 +44,18 @@ class IssueRendererTests(unittest.TestCase):
                     "definition_of_done": ["contracts done"],
                 },
                 {
-                    "id": "core-logic",
-                    "name": "Core",
-                    "description": "Core logic",
+                    "id": "core-engine",
+                    "name": "Core Engine",
+                    "description": "Core engine",
                     "status": "planned",
                     "definition_of_done": ["core done"],
                 },
                 {
-                    "id": "exports",
-                    "name": "Exports",
-                    "description": "Exports",
-                    "status": "planned",
-                    "definition_of_done": ["exports done"],
-                },
-                {
-                    "id": "tests",
-                    "name": "Tests",
-                    "description": "Tests",
-                    "status": "planned",
-                    "definition_of_done": ["tests done"],
-                },
-                {
-                    "id": "hardening",
-                    "name": "Hardening",
+                    "id": "review-hardening",
+                    "name": "Review Hardening",
                     "description": "Hardening",
                     "status": "planned",
                     "definition_of_done": ["hardening done"],
-                },
-                {
-                    "id": "docs",
-                    "name": "Docs",
-                    "description": "Docs",
-                    "status": "planned",
-                    "definition_of_done": ["docs done"],
                 },
                 {
                     "id": "release",
@@ -93,6 +73,14 @@ class IssueRendererTests(unittest.TestCase):
         self.assertIn("Scaffold", title)
         self.assertIn("Required Files", body)
         self.assertIn("systems/demo.system.yaml", body)
+
+    def test_render_stage_issue_matches_fixture(self):
+        system_path = Path("systems/working-paper-review-engine.system.yaml")
+        system = load_system_file(system_path)
+        title, body = render_stage_issue(system, stage_id="core-engine", system_file=system_path)
+        fixture = Path("examples/issues/working-paper-review-engine_core-engine.md").read_text()
+        self.assertIn("Core Engine", title)
+        self.assertEqual(body, fixture)
 
     def test_completion_issue(self):
         system = self._system()

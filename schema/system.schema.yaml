@@ -25,7 +25,7 @@ properties:
     description: Single sentence objective for the system
   current_stage:
     type: string
-    enum: [intake, scaffold, contracts, core-logic, exports, tests, hardening, docs, release]
+    enum: [intake, scaffold, contracts, core-engine, review-hardening, release]
   status:
     type: string
     enum: [planned, in_progress, blocked, complete]
@@ -38,7 +38,7 @@ properties:
       properties:
         id:
           type: string
-          enum: [intake, scaffold, contracts, core-logic, exports, tests, hardening, docs, release]
+          enum: [intake, scaffold, contracts, core-engine, review-hardening, release]
         name:
           type: string
         description:
