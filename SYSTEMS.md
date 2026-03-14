@@ -35,3 +35,4 @@ Optional helpers: `required_files`, `checks`, `non_goals`, `outputs`, `next_hint
 - Worked examples live in `examples/`.
 - The template lives in `templates/system-template.yaml`.
 - Contract-aware repo scaffolds and role definitions live under `templates/repo/` with `templates/repo-roles.yaml`; use them when instantiating new repos so inputs/outputs stay aligned with `spectrum-systems` contracts.
+- SSOS governance presets live in `templates/repo-presets.yaml` and drive governance bootstrap defaults (issue templates, automation, labels).

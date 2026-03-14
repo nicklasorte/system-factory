@@ -1,19 +1,15 @@
 provenance_record:
   run_id: "working-paper-review-engine-example-run"
   source_inputs:
-    - name: "working_paper_markdown"
-      description: "Draft paper content"
-    - name: "review_guidelines"
-      description: "Canonical review rubric pulled from spectrum-systems"
-  source_repo: "spectrum-systems"
+    - name: "define_inputs"
+      description: "List every input artifact and its source reference"
+  source_repo: "nicklasorte/spectrum-systems"
   source_version: "main"
   standards_version: "main"
   working_paper_revision: "set_when_known"
   generated_outputs:
-    - name: "review_packet"
-      description: "Decision, evidence, risks"
-    - name: "risk_log"
-      description: "Risks and mitigations tied to the draft"
+    - name: "define_outputs"
+      description: "List emitted artifacts and target locations"
   timestamps:
     started_at: "set_at_runtime"
     completed_at: "set_at_runtime"

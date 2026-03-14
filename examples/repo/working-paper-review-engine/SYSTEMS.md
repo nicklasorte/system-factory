@@ -7,7 +7,7 @@ Inputs and outputs should match the declarations in `config/contracts.yaml`:
 - Produced: review_packet, risk_log
 
 Standards dependency:
-- Canonical source: spectrum-systems @ main
+- Canonical source: nicklasorte/spectrum-systems @ main
 - Supported versions: v1
 
 Keep the system file for this repo in `systems/` when you instantiate one, and ensure `required_files` include the contract declaration and provenance templates so that validation stays tied to the canonical contracts.

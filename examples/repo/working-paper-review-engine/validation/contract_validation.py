@@ -2,14 +2,14 @@
 Lightweight validation stubs for contract-aware repos.
 
 Replace these with real loaders that pull canonical schemas from the
-`spectrum-systems` repository at the pinned `main`.
+`nicklasorte/spectrum-systems` repository at the pinned `main`.
 """
 
 from typing import Any, Dict
 
 
 def load_canonical_contracts(
-    standards_repo: str = "spectrum-systems",
+    standards_repo: str = "nicklasorte/spectrum-systems",
     reference: str = "main",
 ) -> Dict[str, Any]:
     """

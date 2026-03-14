@@ -240,6 +240,14 @@ def scaffold_repo(
         if include_label_script is not None
         else (preset_profile.include_label_script if preset_profile else include_governance_value)
     )
+    recommended_labels_value = ", ".join(preset_profile.recommended_labels) if preset_profile else ""
+    recommended_docs_value = ", ".join(preset_profile.recommended_docs) if preset_profile else ""
+    automation_hooks_value = ", ".join(preset_profile.automation_hooks) if preset_profile else ""
+    metadata_notes_block = (
+        "\n  ".join([f"- {note}" for note in preset_profile.metadata_notes])
+        if preset_profile and preset_profile.metadata_notes
+        else "- Keep metadata aligned with the governing repo and SSOS automation."
+    )
 
     consumed_block = "\n".join([f"  - {item}" for item in consumed_types]) if consumed_types else "  - define_inputs"
     produced_block = "\n".join([f"  - {item}" for item in produced_types]) if produced_types else "  - define_outputs"
@@ -281,6 +289,10 @@ def scaffold_repo(
             f"{governance_repo_value} owns canonical schemas and contracts. "
             "Propose changes upstream before adopting locally."
         ),
+        "{{RECOMMENDED_LABELS}}": recommended_labels_value,
+        "{{RECOMMENDED_DOCS}}": recommended_docs_value,
+        "{{AUTOMATION_HOOKS}}": automation_hooks_value,
+        "{{METADATA_NOTES_BLOCK}}": metadata_notes_block,
     }
 
     created: List[Path] = []

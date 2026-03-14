@@ -1,0 +1,27 @@
+name: Meeting Artifact
+description: Record meeting artifacts with SSOS provenance.
+title: "[Meeting] <topic>"
+labels: ["ssos", "meeting", "governance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This repo is part of the SSOS / czar org and governed by nicklasorte/spectrum-systems.
+        Governing repo: nicklasorte/spectrum-systems | System layer: Engine
+  - type: input
+    id: meeting_title
+    attributes:
+      label: Meeting title
+      placeholder: e.g., Governance sync - adapters
+    validations:
+      required: true
+  - type: textarea
+    id: decisions
+    attributes:
+      label: Decisions and artifacts
+      description: Decisions made plus any governed artifacts or contracts referenced.
+  - type: textarea
+    id: followups
+    attributes:
+      label: Follow-ups
+      description: Action items with owners; include any upstream work in nicklasorte/spectrum-systems.
