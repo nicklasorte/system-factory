@@ -1,0 +1,22 @@
+repo:
+  name: "Working Paper Review Engine"
+  role: "engine_repo"
+  contract_mode: "consume_and_produce"
+  standards_dependency: "spectrum-systems"
+  standards_enforcement: "required"
+  standards_source_version: "main"
+contracts:
+  consumed_artifact_types:
+    - working_paper_markdown
+    - review_guidelines
+  produced_artifact_types:
+    - review_packet
+    - risk_log
+  primary_artifact_types:
+    - working_paper_markdown
+    - review_packet
+  supported_contract_versions:
+    - v1
+  standards_source_repo: "spectrum-systems"
+  standards_source_version: "main"
+  notes: "Do not redefine canonical contracts locally; use spectrum-systems as source of truth."

@@ -1,0 +1,9 @@
+repo_profile:
+  name: "{{REPO_NAME}}"
+  slug: "{{REPO_SLUG}}"
+  role: "{{REPO_ROLE}}"
+  contract_mode: "{{CONTRACT_MODE}}"
+  standards_dependency: "{{STANDARDS_REPO}}"
+  standards_source_version: "{{STANDARDS_VERSION}}"
+  standards_enforcement: "{{STANDARDS_ENFORCEMENT}}"
+  notes: "Keep this repo aligned with spectrum-systems; do not fork canonical artifacts."

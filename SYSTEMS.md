@@ -34,3 +34,4 @@ Optional helpers: `required_files`, `checks`, `non_goals`, `outputs`, `next_hint
 - Systems under active development live in `systems/`.
 - Worked examples live in `examples/`.
 - The template lives in `templates/system-template.yaml`.
+- Contract-aware repo scaffolds and role definitions live under `templates/repo/` with `templates/repo-roles.yaml`; use them when instantiating new repos so inputs/outputs stay aligned with `spectrum-systems` contracts.
