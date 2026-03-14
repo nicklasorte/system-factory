@@ -1,0 +1,56 @@
+roles:
+  standards_repo:
+    description: Standards-owning repository that defines canonical artifacts aligned to spectrum-systems.
+    template_path: templates/repo/base
+    contract_mode: define
+    primary_artifact_types: [canonical_contracts, governance_profiles]
+    consumed_artifact_types: []
+    produced_artifact_types: [canonical_contracts]
+    supported_contract_versions: ["v1"]
+    standards_dependency: spectrum-systems
+    standards_source_version: main
+    standards_enforcement: required
+  engine_repo:
+    description: Operational engine that consumes and produces artifacts under spectrum-systems contracts.
+    template_path: templates/repo/base
+    contract_mode: consume_and_produce
+    primary_artifact_types: [working_paper_markdown, review_packet]
+    consumed_artifact_types: [working_paper_markdown, review_guidelines]
+    produced_artifact_types: [review_packet, risk_log]
+    supported_contract_versions: ["v1"]
+    standards_dependency: spectrum-systems
+    standards_source_version: main
+    standards_enforcement: required
+  orchestration_repo:
+    description: Orchestration layer coordinating engines while enforcing canonical contracts.
+    template_path: templates/repo/base
+    contract_mode: consume_and_produce
+    primary_artifact_types: [workflow_plan, orchestration_log]
+    consumed_artifact_types: [workflow_plan, engine_contracts]
+    produced_artifact_types: [orchestration_log, dispatch_plan]
+    supported_contract_versions: ["v1"]
+    standards_dependency: spectrum-systems
+    standards_source_version: main
+    standards_enforcement: required
+  library_repo:
+    description: Shared library that consumes canonical contracts to provide reusable components.
+    template_path: templates/repo/base
+    contract_mode: consume
+    primary_artifact_types: [shared_components]
+    consumed_artifact_types: [canonical_contracts]
+    produced_artifact_types: [library_package]
+    supported_contract_versions: ["v1"]
+    standards_dependency: spectrum-systems
+    standards_source_version: main
+    standards_enforcement: required
+  analysis_repo:
+    description: Analysis or research repo that consumes canonical artifacts and emits findings.
+    template_path: templates/repo/base
+    contract_mode: consume_and_produce
+    primary_artifact_types: [analysis_dataset, findings_report]
+    consumed_artifact_types: [analysis_dataset]
+    produced_artifact_types: [findings_report, audit_log]
+    supported_contract_versions: ["v1"]
+    standards_dependency: spectrum-systems
+    standards_source_version: main
+    standards_enforcement: required

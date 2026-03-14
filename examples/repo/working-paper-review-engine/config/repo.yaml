@@ -1,0 +1,9 @@
+repo_profile:
+  name: "Working Paper Review Engine"
+  slug: "working-paper-review-engine"
+  role: "engine_repo"
+  contract_mode: "consume_and_produce"
+  standards_dependency: "spectrum-systems"
+  standards_source_version: "main"
+  standards_enforcement: "required"
+  notes: "Keep this repo aligned with spectrum-systems; do not fork canonical artifacts."

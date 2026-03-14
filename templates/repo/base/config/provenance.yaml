@@ -1,0 +1,17 @@
+provenance_record:
+  run_id: "{{REPO_SLUG}}-example-run"
+  source_inputs:
+    - name: "define_inputs"
+      description: "List every input artifact and its source reference"
+  source_repo: "{{STANDARDS_REPO}}"
+  source_version: "{{STANDARDS_VERSION}}"
+  standards_version: "{{STANDARDS_VERSION}}"
+  working_paper_revision: "set_when_known"
+  generated_outputs:
+    - name: "define_outputs"
+      description: "List emitted artifacts and target locations"
+  timestamps:
+    started_at: "set_at_runtime"
+    completed_at: "set_at_runtime"
+
+# Keep this aligned with the provenance_record shape in spectrum-systems.

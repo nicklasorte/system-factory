@@ -1,0 +1,19 @@
+repo:
+  name: "{{REPO_NAME}}"
+  role: "{{REPO_ROLE}}"
+  contract_mode: "{{CONTRACT_MODE}}"
+  standards_dependency: "{{STANDARDS_REPO}}"
+  standards_enforcement: "{{STANDARDS_ENFORCEMENT}}"
+  standards_source_version: "{{STANDARDS_VERSION}}"
+contracts:
+  consumed_artifact_types:
+{{CONSUMED_ARTIFACT_TYPES_BLOCK}}
+  produced_artifact_types:
+{{PRODUCED_ARTIFACT_TYPES_BLOCK}}
+  primary_artifact_types:
+{{PRIMARY_ARTIFACT_TYPES_BLOCK}}
+  supported_contract_versions:
+{{SUPPORTED_CONTRACT_VERSIONS_BLOCK}}
+  standards_source_repo: "{{STANDARDS_REPO}}"
+  standards_source_version: "{{STANDARDS_VERSION}}"
+  notes: "Do not redefine canonical contracts locally; use spectrum-systems as source of truth."

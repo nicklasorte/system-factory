@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Dict, List
 
 from lib.issue_renderer import render_completion_issue, render_stage_issue
+from lib.repo_scaffolder import RepoScaffoldError, load_repo_roles, scaffold_repo
 from lib.system_model import (
     AdvanceResult,
     ValidationError,
@@ -158,6 +159,33 @@ def cmd_advance(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_list_roles(_: argparse.Namespace) -> int:
+    roles = load_repo_roles()
+    for name, profile in roles.items():
+        print(f"{name}: {profile.description}")
+    return 0
+
+
+def cmd_scaffold_repo(args: argparse.Namespace) -> int:
+    try:
+        created = scaffold_repo(
+            name=args.name,
+            role=args.role,
+            output=Path(args.output),
+            contract_mode=args.contract_mode,
+            primary_artifact_types=args.primary_artifact_types,
+            standards_version=args.standards_version,
+        )
+    except RepoScaffoldError as exc:
+        print(exc, file=sys.stderr)
+        return 1
+    dest_root = Path(args.output) if Path(args.output).suffix else Path(args.output) / slugify(args.name)
+    print(f"Scaffolded {args.role} at {dest_root}")
+    for path in created:
+        print(f"- {path}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="System factory helpers.")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -205,6 +233,36 @@ def build_parser() -> argparse.ArgumentParser:
     )
     advance.set_defaults(func=cmd_advance)
 
+    roles = sub.add_parser("list-roles", help="List available repo scaffolding roles.")
+    roles.set_defaults(func=cmd_list_roles)
+
+    scaffold = sub.add_parser("scaffold-repo", help="Scaffold a contract-aware repository.")
+    scaffold.add_argument("--name", required=True, help="Repository name.")
+    scaffold.add_argument(
+        "--role",
+        required=True,
+        help="Repository role (e.g., engine_repo, orchestration_repo).",
+    )
+    scaffold.add_argument(
+        "--output",
+        default="scaffolds",
+        help="Output directory or path. Defaults to scaffolds/{slug}/",
+    )
+    scaffold.add_argument(
+        "--contract-mode",
+        help="Override contract_mode (consume, produce, consume_and_produce, define). Defaults to role profile.",
+    )
+    scaffold.add_argument(
+        "--primary-artifact-types",
+        nargs="+",
+        help="Optional primary artifact types to seed into the scaffold.",
+    )
+    scaffold.add_argument(
+        "--standards-version",
+        help="Optional standards reference/version override.",
+    )
+    scaffold.set_defaults(func=cmd_scaffold_repo)
+
     return parser
 
 
@@ -216,4 +274,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-
