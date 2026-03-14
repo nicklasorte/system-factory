@@ -1,0 +1,20 @@
+constitution:
+  source:
+    repository: spectrum-systems
+    url: https://github.com/nicklasorte/spectrum-systems
+    reference: main
+  governance:
+    rules_profile: profiles/operational-engines/rules.default.yaml
+    prompt_registry: prompts/operational-engines.registry.yaml
+    provenance_standard: standards/provenance/v1.yaml
+    error_taxonomy: standards/errors/v1.yaml
+    architectural_contracts:
+      - contracts/architecture/operational-engine.yaml
+      - contracts/architecture/provenance.yaml
+  enforcement:
+    compatibility_policy: docs/compatibility-policy.md
+    integration_playbook: docs/constitution-integration.md
+    required_for: production
+  sync:
+    cadence: on-change
+    last_synced_ref: main
