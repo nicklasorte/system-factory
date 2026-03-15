@@ -38,6 +38,7 @@ class RepoScaffoldingTests(unittest.TestCase):
             self.assertIn("nicklasorte/spectrum-systems", (repo_root / "CONTRACTS.md").read_text())
             self.assertIn("consume_and_produce", (repo_root / "ARCHITECTURE.md").read_text())
             self.assertIn(repo_root / "validation" / "contract_validation.py", created)
+            self._assert_baseline_structure(repo_root)
 
     def _assert_governance_bootstrap(self, repo_root: Path):
         self.assertTrue((repo_root / ".github" / "ISSUE_TEMPLATE" / "artifact.yml").exists())
@@ -53,6 +54,18 @@ class RepoScaffoldingTests(unittest.TestCase):
         issue_template = (repo_root / ".github" / "ISSUE_TEMPLATE" / "artifact.yml").read_text()
         self.assertIn("nicklasorte/spectrum-systems", issue_template)
 
+    def _assert_baseline_structure(self, repo_root: Path):
+        for name in ["README.md", "CLAUDE.md", "CODEX.md", "SYSTEMS.md"]:
+            self.assertTrue((repo_root / name).exists(), f"Missing baseline file: {name}")
+        for rel in ["docs", "tests", "scripts", ".github/workflows"]:
+            self.assertTrue((repo_root / rel).exists(), f"Missing baseline directory: {rel}")
+        self.assertTrue((repo_root / ".github" / "workflows" / "tests.yml").exists())
+        self.assertTrue((repo_root / "tests" / "test_structure.py").exists())
+        template_doc = (repo_root / "docs" / "repository-template.md").read_text()
+        self.assertIn("README.md", template_doc)
+        self.assertIn("spectrum-systems", template_doc)
+        self.assertIn(".github/workflows", template_doc)
+
     def test_engine_preset_includes_governance_bootstrap(self):
         with TemporaryDirectory() as tmpdir:
             created = scaffold_repo(
@@ -64,6 +77,7 @@ class RepoScaffoldingTests(unittest.TestCase):
             )
             repo_root = Path(tmpdir) / slugify("Engine Gov Repo")
             self._assert_governance_bootstrap(repo_root)
+            self._assert_baseline_structure(repo_root)
             self.assertIn(repo_root / ".github" / "ISSUE_TEMPLATE" / "comment_matrix.yml", created)
 
     def test_orchestrator_preset_includes_governance_bootstrap(self):
@@ -76,6 +90,7 @@ class RepoScaffoldingTests(unittest.TestCase):
             )
             repo_root = Path(tmpdir) / slugify("Coordination Hub")
             self._assert_governance_bootstrap(repo_root)
+            self._assert_baseline_structure(repo_root)
             readme_text = (repo_root / "README.md").read_text()
             self.assertIn("System layer: Orchestrator", readme_text)
 
@@ -89,6 +104,7 @@ class RepoScaffoldingTests(unittest.TestCase):
             )
             repo_root = Path(tmpdir) / slugify("Advisory Notes")
             self._assert_governance_bootstrap(repo_root)
+            self._assert_baseline_structure(repo_root)
             readme_text = (repo_root / "README.md").read_text()
             self.assertIn("System layer: Advisor", readme_text)
 

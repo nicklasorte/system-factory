@@ -17,5 +17,8 @@ Key docs:
 - `GOVERNANCE.md` – linkage to the spectrum-systems “czar” repository
 - `OPERATIONS.md` – operating guidance with provenance and validation checkpoints
 - `SYSTEMS.md` – lifecycle notes and stage expectations
+- `docs/repository-template.md` – governed repo layout (docs/tests/scripts/.github) and design-review placement tied to `spectrum-systems` contracts
 
 Start by reviewing `config/contracts.yaml` to confirm the declared `consumed_artifact_types` and `produced_artifact_types`. Keep the standards reference aligned with `{{STANDARDS_REPO}}`; do not fork canonical schemas here.
+
+CI guardrails: `.github/workflows/tests.yml` installs dev dependencies and runs `pytest`, with baseline checks in `tests/test_structure.py` to prevent drift from the governance template.

@@ -14,6 +14,11 @@ System Factory now bootstraps SSOS governance for every scaffolded repository so
 
 CLI flags mirror these options: `--include-governance-bootstrap` / `--skip-governance-bootstrap`, `--include-project-automation`, `--include-issue-templates`, `--include-label-script`, `--governing-repo`, `--github-project-number`, `--system-layer`, `--preset`.
 
+## Baseline governance scaffold (always on)
+- New repos always include README/CLAUDE/CODEX/SYSTEMS tied to the governing repo, `docs/repository-template.md` describing the governed layout, seeded `docs/`, `tests/`, and `scripts/` directories, and `.github/workflows/tests.yml` that installs dev dependencies and runs `pytest`.
+- `tests/test_structure.py` ships with each scaffold to keep the governance layout aligned with `nicklasorte/spectrum-systems` even if control-plane assets are toggled.
+- Place design-review artifacts under `docs/design-reviews/` and map them to canonical artifact contracts in `spectrum-systems`; declare any new artifact types in `config/contracts.yaml`.
+
 ## Presets
 - `engine` → `role=engine_repo`, governance bootstrap on, project automation on, label script on, layer `Engine`.
 - `orchestrator` → `role=orchestration_repo`, governance bootstrap on, project automation on, label script on, layer `Orchestrator`.

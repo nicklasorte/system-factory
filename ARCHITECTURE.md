@@ -8,7 +8,8 @@ Key concepts:
 - Contract declarations: every scaffold ships `config/contracts.yaml` with `consumed_artifact_types`, `produced_artifact_types`, `supported_contract_versions`, `standards_source_repo`, and enforcement settings.
 - Provenance: `config/provenance.yaml` captures source inputs, run_id, standards version, outputs, and timestamps; align with `provenance_record` in `spectrum-systems`.
 - Validation: `validation/contract_validation.py` provides stubs for loading canonical contracts and validating input/output artifacts.
-- Docs: scaffolds include `CONTRACTS.md`, `ARCHITECTURE.md`, `GOVERNANCE.md`, `OPERATIONS.md`, `SYSTEMS.md`, `CODEX.md`, and `CLAUDE.md` that describe czar alignment and forbid local contract redefinition.
+- Docs: scaffolds include `CONTRACTS.md`, `ARCHITECTURE.md`, `GOVERNANCE.md`, `OPERATIONS.md`, `SYSTEMS.md`, `CODEX.md`, `CLAUDE.md`, and `docs/repository-template.md` that describe czar alignment, governed layout (docs/tests/scripts/.github), and forbid local contract redefinition.
+- CI and validation: `.github/workflows/tests.yml` installs dev dependencies and runs `pytest`, with seeded `tests/test_structure.py` to guard the governance template; workflows remain deterministic even when governance bootstrap flags are toggled.
 
 Responsibility boundaries:
 - `spectrum-systems` remains the single source of truth for canonical contracts and governance.

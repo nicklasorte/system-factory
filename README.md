@@ -37,6 +37,7 @@ System Factory keeps repo-based AI systems as deterministic YAML lifecycles. Eac
 - `scripts/` – CLI (`system_factory.py`) and helpers.
 - `tests/` – unit tests for validation, advancement, rendering, and repo scaffolding.
 - `playbooks/` – stage-specific guidance (`bootstrap-system`, `add-contracts`, `add-core-engine`, `review-hardening`, `release-system`).
+- `docs/` – governed repository template and layout guidance applied to new scaffolds.
 - `.github/workflows/` – validation and advance-on-merge automation.
 
 ## Czar-aligned, contract-aware scaffolding
@@ -51,6 +52,12 @@ Example: to scaffold an engine repo:
 python scripts/system_factory.py scaffold-repo --name "Working Paper Review Engine" --role engine_repo --output scaffolds
 ```
 This produces `scaffolds/working-paper-review-engine` with contract declarations, provenance placeholders, validation stubs, and czar-aware docs that point at `spectrum-systems`.
+
+## Governance propagation
+- System Factory (Layer 1) now propagates the `spectrum-systems` (Layer 2) constitutional standards into every generated repository so operational engines (Layer 3) start governed by default.
+- Baseline scaffold elements: README/CLAUDE/CODEX/SYSTEMS linked to the governing repo, `docs/repository-template.md` describing governed layout, seeded `docs/`, `tests/`, and `scripts/` directories, and `.github/workflows/tests.yml` that installs dev dependencies and runs `pytest` (with baseline checks in `tests/test_structure.py`).
+- Governance bootstrap remains deterministic: use `--include-governance-bootstrap | --skip-governance-bootstrap` plus `--include-project-automation`, `--include-issue-templates`, and `--include-label-script` to control SSOS assets while keeping the baseline governance structure intact.
+- Generated repos remain compatible with canonical artifact contracts from `spectrum-systems`; design-review artifacts should live under `docs/design-reviews/` and reference those contracts before merging changes.
 
 ## SSOS governance bootstrap
 - Repo scaffolds can include SSOS control-plane assets by default: issue templates, project automation, label bootstrap, and governance-linkage docs (README/AGENTS/CLAUDE/CODEX).
