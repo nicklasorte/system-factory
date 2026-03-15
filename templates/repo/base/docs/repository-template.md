@@ -1,0 +1,17 @@
+# Repository Template
+
+System Factory generates repositories with constitutional governance linked to `spectrum-systems` so operational engines inherit the same guardrails by default.
+
+Expected layout:
+- README.md – declares the repo role, standards reference, and governance linkage back to `spectrum-systems`.
+- CLAUDE.md – agent guidance aligned to the governing repo.
+- CODEX.md – developer guardrails to keep scaffolds deterministic.
+- SYSTEMS.md – lifecycle alignment and stage expectations.
+- docs/ – repository guidance, metadata, and design-review artifacts that reference canonical contracts from `spectrum-systems`.
+- tests/ – pytest harness seeded with baseline structure checks.
+- scripts/ – automation hooks (e.g., label bootstrap) that stay aligned with the control-plane repo.
+- .github/workflows/ – CI that installs dev dependencies and runs `pytest`.
+
+Design-review compatibility:
+- Store design-review artifacts under `docs/design-reviews/` (or similar) and tie them to the canonical artifact contracts published in `spectrum-systems` before shipping changes.
+- When adding new artifact types, declare them in `config/contracts.yaml` with the governing repo and contract versions so design-review outputs remain compatible.
